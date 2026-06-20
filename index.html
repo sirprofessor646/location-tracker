@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Share Location</title>
+ <style>
+ body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background-color: #f4f6f9; }
+ .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: inline-block; max-width: 400px; }
+ button { background-color: #25D366; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+ button:hover { background-color: #128C7E; }
+ #status { margin-top: 20px; font-weight: bold; }
+ </style>
+</head>
+<body>
+ <div class="card">
+   <h2>📍 Share Your Location</h2>
+   <button onclick="getLocation()">✅ OK, Share Location</button>
+   <p id="status"></p>
+ </div>
+
+ <script>
+ function getLocation() {
+   document.getElementById("status").innerHTML = "⏳ Getting location...";
+   if (navigator.geolocation) {
+     navigator.geolocation.getCurrentPosition(function(position) {
+       let lat = position.coords.latitude;
+       let lon = position.coords.longitude;
+       let phone = "917091066916";
+       let msg = encodeURIComponent(`My location: https://maps.google.com/?q=${lat},${lon}`);
+       window.location.href = `https://wa.me/${phone}?text=${msg}`;
+     });
+   }
+ }
+ </script>
+</body>
+</html>
