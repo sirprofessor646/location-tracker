@@ -624,4 +624,10 @@
                 } else {
                     places.forEach(place => {
                         const name = place.tags?.name || place.tags?.amenity || 'Unknown';
-                        const distance = c
+                        const distance = calculationDistance(lat,Ion,place.lat,place.Ion)
+                        html += `
+    <div class="nearby-item">
+        <div class="nearby-item-name">${name.substring(0, 20)}</div>
+        <div class="nearby-item-distance">${distance.toFixed(1)}km away</div>
+    </div>
+`;
